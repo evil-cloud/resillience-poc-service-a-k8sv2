@@ -3,7 +3,7 @@ replicaCount: 3
 image:
   repository: d4rkghost47/python-circuit-svc-1
   pullPolicy: IfNotPresent
-  tag: "{{ .Values.image.tag | default .Chart.AppVersion }}"
+  tag: "latest"
 version: v1
 
 serviceAccount:
