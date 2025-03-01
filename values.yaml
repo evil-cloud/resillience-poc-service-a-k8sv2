@@ -1,7 +1,7 @@
 replicaCount: 3
 
 image:
-  repository: d4rkghost47/python-circuit-svc-1
+  repository: d4rkghost47/python-circuit-svc-1v2
   pullPolicy: IfNotPresent
   tag: "latest"
 version: v1
