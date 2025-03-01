@@ -1,0 +1,16 @@
+🚀 ¡Despliegue exitoso de {{ .Chart.Name }}!
+
+El servicio se ha desplegado en el namespace: {{ .Release.Namespace }}
+
+🔗 Para acceder a la aplicación:
+  kubectl port-forward svc/{{ .Release.Name }} {{ .Values.service.port }}:{{ .Values.service.port }} -n {{ .Release.Namespace }}
+
+📜 Para verificar los pods en ejecución:
+  kubectl get pods -n {{ .Release.Namespace }} -l app.kubernetes.io/name={{ .Release.Name }}
+
+📂 Para ver los logs:
+  kubectl logs -l app.kubernetes.io/name={{ .Release.Name }} -n {{ .Release.Namespace }} --tail=100
+
+✅ Helm Chart versión: {{ .Chart.Version }}
+✅ Aplicación versión: {{ .Chart.AppVersion }}
+
