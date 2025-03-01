@@ -1,58 +1,47 @@
 replicaCount: 3
-
 image:
   repository: d4rkghost47/python-circuit-svc-1v2
   pullPolicy: IfNotPresent
-  tag: "latest"
+  tag: 920d751b
 version: v1
-
 serviceAccount:
   create: true
   automount: true
   annotations: {}
   name: ""
-
 podSecurityContext:
   runAsUser: 1000
   runAsGroup: 3000
   fsGroup: 2000
   seccompProfile:
     type: RuntimeDefault
-
 securityContext:
   capabilities:
     drop:
-      - ALL
+    - ALL
   readOnlyRootFilesystem: true
   runAsNonRoot: true
   allowPrivilegeEscalation: false
-
 service:
   type: ClusterIP
   port: 8000
   targetPort: 8000
-
 ingress:
   enabled: false
-  className: "nginx"
-  annotations: 
+  className: nginx
+  annotations:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-    external-dns.alpha.kubernetes.io/hostname: "resillence4api.infraops.us"
-    external-dns.alpha.kubernetes.io/target: "6eb6270f-6be8-42c6-9e60-e9e7050350e5.cfargotunnel.com"
+    external-dns.alpha.kubernetes.io/hostname: resillence4api.infraops.us
+    external-dns.alpha.kubernetes.io/target: 6eb6270f-6be8-42c6-9e60-e9e7050350e5.cfargotunnel.com
   hosts:
-    - host: resillence4api.infraops.us
-      paths:
-        - path: /
-          pathType: Prefix
+  - host: resillence4api.infraops.us
+    paths:
+    - path: /
+      pathType: Prefix
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
 podDisruptionBudget:
   enabled: true
   minAvailable: 2
-
 resources:
   limits:
     cpu: 500m
@@ -60,26 +49,21 @@ resources:
   requests:
     cpu: 250m
     memory: 256Mi
-
 livenessProbe:
   httpGet:
     path: /health
     port: http
-
 readinessProbe:
   httpGet:
     path: /health
     port: http
-
 autoscaling:
   enabled: true
   minReplicas: 3
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
-
 env:
-  REDIS_HOST: "redis-ha-haproxy"
+  REDIS_HOST: redis-ha-haproxy
   REDIS_PORT: "6379"
-  SERVICE_B_URL: "http://python-svc-2-service-b:8000/"
-  SERVICE_C_URL: "http://python-svc-3-service-c:8000/"
-
+  SERVICE_B_URL: http://python-svc-2-service-b:8000/
+  SERVICE_C_URL: http://python-svc-3-service-c:8000/
