@@ -1,8 +1,0 @@
-helm:
-  parameters:
-  - name: image.name
-    value: d4rkghost47/python-circuit-svc-1v2
-    forcestring: true
-  - name: image.tag
-    value: d0cddc4e
-    forcestring: true
