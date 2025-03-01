@@ -2,7 +2,7 @@ replicaCount: 3
 image:
   repository: d4rkghost47/python-circuit-svc-1v2
   pullPolicy: IfNotPresent
-  tag: fd9fb861
+  tag: 42de716a
 version: v1
 serviceAccount:
   create: true
