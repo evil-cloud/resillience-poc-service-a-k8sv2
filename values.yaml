@@ -3,8 +3,7 @@ replicaCount: 3
 image:
   repository: d4rkghost47/python-circuit-svc-1
   pullPolicy: IfNotPresent
-  tag: "{{ .imageTag | default .Chart.AppVersion }}"
-
+  tag: "{{ .Values.image.tag | default .Chart.AppVersion }}"
 version: v1
 
 serviceAccount:
@@ -84,5 +83,3 @@ env:
   SERVICE_B_URL: "http://python-svc-2-service-b:8000/"
   SERVICE_C_URL: "http://python-svc-3-service-c:8000/"
 
-## Actualizacion dinamica via ArgoCD
-imageTag: "latest"
