@@ -33,7 +33,7 @@ service:
   targetPort: 8000
 
 ingress:
-  enabled: true
+  enabled: false
   className: "nginx"
   annotations: 
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
